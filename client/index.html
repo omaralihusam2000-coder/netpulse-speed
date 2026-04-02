@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NetPulse Real</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg"></div>
+    <main class="app-shell">
+      <section class="hero card">
+        <div>
+          <div class="pill">NetPulse Real · deployable speed test</div>
+          <h1>Professional internet speed test with a real backend.</h1>
+          <p>
+            Measures latency, download, upload, jitter, and gives a simple quality score.
+            For realistic internet results, run this on a remote server or VPS, not localhost.
+          </p>
+          <div class="hero-actions">
+            <button id="startBtn" class="btn btn-primary">Start Test</button>
+            <button id="resetBtn" class="btn btn-secondary">Reset</button>
+          </div>
+          <div class="status-row">
+            <div class="status-label">Status</div>
+            <div id="statusText" class="status-value">Ready</div>
+          </div>
+          <div class="progress-bar"><div id="progressFill"></div></div>
+        </div>
+        <div class="hero-note card-sub">
+          <div class="hero-note-title">Important</div>
+          <p>
+            If you test on <strong>localhost</strong>, the result reflects your connection to your own machine,
+            so it can be much faster than your real internet. Deploy it online for true internet measurement.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid-main">
+        <section class="meter card">
+          <div class="meter-wrap">
+            <svg viewBox="0 0 240 240" class="gauge">
+              <defs>
+                <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#22d3ee"></stop>
+                  <stop offset="50%" stop-color="#3b82f6"></stop>
+                  <stop offset="100%" stop-color="#8b5cf6"></stop>
+                </linearGradient>
+              </defs>
+              <circle cx="120" cy="120" r="88" class="gauge-track"></circle>
+              <circle id="gaugeValue" cx="120" cy="120" r="88" class="gauge-value"></circle>
+            </svg>
+            <div class="meter-center">
+              <div class="meter-label">Download</div>
+              <div id="meterNumber" class="meter-number">0.0</div>
+              <div class="meter-unit">Mbps</div>
+            </div>
+          </div>
+          <div class="metrics-grid">
+            <article class="metric-box">
+              <div class="metric-title">Download</div>
+              <div><span id="downloadValue">0.0</span> <small>Mbps</small></div>
+            </article>
+            <article class="metric-box">
+              <div class="metric-title">Upload</div>
+              <div><span id="uploadValue">0.0</span> <small>Mbps</small></div>
+            </article>
+            <article class="metric-box">
+              <div class="metric-title">Latency</div>
+              <div><span id="pingValue">0.0</span> <small>ms</small></div>
+            </article>
+            <article class="metric-box">
+              <div class="metric-title">Jitter</div>
+              <div><span id="jitterValue">0.0</span> <small>ms</small></div>
+            </article>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="card side-card">
+            <div class="panel-title">Connection score</div>
+            <div id="scoreValue" class="score-value">0</div>
+            <div id="qualityValue" class="quality-value">Ready</div>
+            <div class="detail-list">
+              <div class="detail-row"><span>Packet loss</span><strong>Not measured</strong></div>
+              <div class="detail-row"><span>Loaded latency</span><strong id="loadedLatencyValue">0.0 ms</strong></div>
+              <div class="detail-row"><span>Experience</span><strong id="experienceValue">Idle</strong></div>
+            </div>
+          </section>
+
+          <section class="card side-card">
+            <div class="panel-title">Readiness</div>
+            <div class="readiness-box">
+              <div>Gaming</div>
+              <strong id="gamingValue">Unknown</strong>
+            </div>
+            <div class="readiness-box">
+              <div>4K Streaming</div>
+              <strong id="streamingValue">Unknown</strong>
+            </div>
+            <div class="readiness-box">
+              <div>Remote Work</div>
+              <strong id="workValue">Unknown</strong>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="card history-card">
+        <div class="panel-title">Recent tests</div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Download</th>
+                <th>Upload</th>
+                <th>Latency</th>
+                <th>Jitter</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <tr><td colspan="6" class="empty-row">No tests yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
